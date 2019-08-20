@@ -100,8 +100,14 @@ namespace Uplift.Areas.Customer.Controllers
                     _unitOfWork.OrderDetails.Add(orderDetails);
 
                 }
+
+                // save to the db (only once)
                 _unitOfWork.Save();
+
+                // flush the session (cart has been processed)
                 HttpContext.Session.SetObject(SD.SessionCart, new List<int>());
+
+
                 return RedirectToAction("OrderConfirmation", "Cart", new { id = CartVM.OrderHeader.Id });
             }
         }

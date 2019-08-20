@@ -210,6 +210,67 @@ namespace Uplift.DataAccess.Migrations
                     b.ToTable("Frequency");
                 });
 
+            modelBuilder.Entity("Uplift.Models.OrderDetails", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("OrderHeaderId");
+
+                    b.Property<double>("Price");
+
+                    b.Property<int>("ServiceId");
+
+                    b.Property<string>("ServiceName")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderHeaderId");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("OrderDetails");
+                });
+
+            modelBuilder.Entity("Uplift.Models.OrderHeader", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .IsRequired();
+
+                    b.Property<string>("City")
+                        .IsRequired();
+
+                    b.Property<string>("Comments");
+
+                    b.Property<string>("Email")
+                        .IsRequired();
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<DateTime>("OrderDate");
+
+                    b.Property<string>("Phone")
+                        .IsRequired();
+
+                    b.Property<int>("ServiceCount");
+
+                    b.Property<string>("Status");
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OrderHeader");
+                });
+
             modelBuilder.Entity("Uplift.Models.Service", b =>
                 {
                     b.Property<int>("Id")
@@ -236,6 +297,22 @@ namespace Uplift.DataAccess.Migrations
                     b.HasIndex("FrequencyId");
 
                     b.ToTable("Service");
+                });
+
+            modelBuilder.Entity("Uplift.Models.WebImages", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<byte[]>("Picture");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WebImages");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -285,6 +362,21 @@ namespace Uplift.DataAccess.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Uplift.Models.OrderDetails", b =>
+                {
+                    b.HasOne("Uplift.Models.OrderHeader", "OrderHeader")
+                        .WithMany()
+                        .HasForeignKey("OrderHeaderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Uplift.Models.Service", "Service")
+                        .WithMany()
+                        .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
