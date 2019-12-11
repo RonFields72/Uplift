@@ -1,18 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="3.0.0-preview7.19365.7" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Microsoft.Extensions.Identity.Stores">
-      <HintPath>..\..\..\..\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\3.0.0-preview8.19405.7\ref\netcoreapp3.0\Microsoft.Extensions.Identity.Stores.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="3.1.0" />
   </ItemGroup>
 
 </Project>

@@ -36,8 +36,7 @@ namespace Uplift
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders()
-                .AddDefaultUI(UIFramework.Bootstrap4);
+                .AddDefaultTokenProviders();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 

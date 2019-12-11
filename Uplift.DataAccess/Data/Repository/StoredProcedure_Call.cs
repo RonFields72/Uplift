@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Text;
 using Dapper;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Uplift.DataAccess.Data.Repository.IRepository;
 
